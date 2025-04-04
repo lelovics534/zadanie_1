@@ -4,16 +4,25 @@
 unsigned int pocet_tokenov(char *str)
 {
 	int i;
-	unsigned int pocet;
+	unsigned int pocet, v_slove;
 	
 	i=0;
 	pocet=0;
+	v_slove=0; // v_slove=0 == nie sme v slove ale v bielom znaky, v_slove=1 == sme v nejakom slove
 	
 	while(str[i]!=0)
 	{
 		if(str[i]==' '|| str[i]=='\n'|| str[i]=='\t')
 		{
+			v_slove=0;
+		}
+		else
+		{
+			if(v_slove==0)
+			{
 			pocet++;
+			v_slove=1;
+			}
 		}
 	i++;
 	}
