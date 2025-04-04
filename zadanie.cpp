@@ -92,7 +92,7 @@ unsigned int pocet_tokenov(char *str)
 	
 	for (i=0;i<pocet;i++)
 	{
-		free(slova);
+		free(slova[i]);
 	}
 return(pocet);
 }
