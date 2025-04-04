@@ -2,6 +2,32 @@
 #include<stdlib.h>
 #include<string.h>
 
+int porovnaj_slova(char *a, char *b)
+{
+	int i, rovnake, rozne;
+	
+	i=0;
+	
+	while(a[i]!=0 && b[i]!=0)
+	{
+		if(a[i] != b[i])
+		{
+			return(0); // rozne slova
+		}
+	i++;
+	}
+	
+	if (a[i]==0 && b[i]==0) // ak su rovnako dlhe slova
+	{
+		return(1); 
+	}
+	else
+	{
+		return (0); //su rozne
+	}
+}
+
+
 unsigned int pocet_tokenov(char *str)
 {
 	int i,j,start,dlzka;
