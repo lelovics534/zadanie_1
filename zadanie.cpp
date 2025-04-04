@@ -2,57 +2,59 @@
 #include<stdlib.h>
 #include<string.h>
 
+
 int porovnaj_slova(char *a, char *b)
 {
 	int i;
 	
-	i=0;
+	i = 0;
 	
-	while(a[i]!=0 && b[i]!=0)
+	while(a[i] != 0 && b[i] != 0)
 	{
 		if(a[i] != b[i])
 		{
-			return(0); // rozne slova
+			return 0; // rozne slova
 		}
 	i++;
 	}
 	
-	if (a[i]==0 && b[i]==0) // su rovnako dlhe slova
+	if (a[i] == 0 && b[i] == 0) // su rovnako dlhe slova
 	{
-		return(1); 
+		return 1; 
 	}
 	else
-	{
-		return (0); //su rozne
-	}
+		{
+			return 0; //su rozne
+		}
 }
 
 
 unsigned int pocet_tokenov(char *str)
 {
-	int i,j,start,dlzka, existuje;
-	unsigned int pocet,k,m;
+	int i, j, start, dlzka, existuje;
+	unsigned int pocet, k, m;
 	char *nove_slovo;
 	char **slova;
 	char **zoznam_slov;
 	
-	i=0;
-	pocet=0;
-	slova=NULL;
 	
-	while(str[i]!=0)
+	i = 0;
+	pocet = 0;
+	slova = NULL;
+	
+	while(str[i] != 0)
 	{
-		while(str[i]==' '|| str[i]=='\n'|| str[i]=='\t')
+		while(str[i] == ' '|| str[i] == '\n'|| str[i] == '\t')
 		{
 			i++;
 		}
 		
-		if(str[i]!=0)
+		if(str[i] != 0)
 		{
-			start=i;
+			start = i;
 			existuje=0; // pred kazdym slovom musime prepisat na 0
 			
-			while(str[i] != 0 && str[i] != ' '&& str[i]!= '\n' && str[i]!= '\t')
+			while(str[i] != 0 && str[i] != ' '&& str[i] != '\n' && str[i]!= '\t')
 			{
 				i++;
 			}
@@ -66,38 +68,36 @@ unsigned int pocet_tokenov(char *str)
             }
             nove_slovo[dlzka] = '\0';
             
-            for(k=0;k<pocet;k++)
+            for(k = 0; k < pocet; k++)
             {
-            	if (porovnaj_slova(slova[k],nove_slovo))
+            	if (porovnaj_slova(slova[k], nove_slovo))
             	{
-            		existuje=1;
+            		existuje = 1;
             		break;
 				}
 			}
 			
-			if (existuje==0)
+			if (existuje == 0)
 			{
 				zoznam_slov = (char **)malloc((pocet + 1) * sizeof(char *));
-				for(m=0; m<pocet;m++)
+				for(m = 0; m < pocet; m++)
 				{
-					zoznam_slov[m]=slova[m];
+					zoznam_slov[m] = slova[m];
 				}
-				zoznam_slov[pocet]=nove_slovo;
+				zoznam_slov[pocet] = nove_slovo;
 				
 				free(slova);
 				slova= zoznam_slov;
 				pocet++;
 			}
 			else 
-				{
-					free(nove_slovo);
-				}
-		
-			
+			{
+				free(nove_slovo);
+			}		
 		}
 	}
 	
-	for (i=0;i<pocet;i++)
+	for (i = 0; i < pocet; i++)
 	{
 		free(slova[i]);
 	}
