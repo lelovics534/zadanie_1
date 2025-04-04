@@ -1,14 +1,14 @@
 #include<stdio.h>
 #include<string.h>
 
-int pocet_tokenov(char *str)
+unsigned int pocet_tokenov(char *str)
 {
 }
 
 int main(void)
 {
 	char text[]="";
-	int vysledok = pocet_tokenov(text);
+	unsigned int vysledok = pocet_tokenov(text);
 	
 	printf("pocet tokenov: %d\n ",vysledok);
 	return(0);
