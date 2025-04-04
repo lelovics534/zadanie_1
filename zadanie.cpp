@@ -17,7 +17,7 @@ int porovnaj_slova(char *a, char *b)
 	i++;
 	}
 	
-	if (a[i]==0 && b[i]==0) // ak su rovnako dlhe slova
+	if (a[i]==0 && b[i]==0) // su rovnako dlhe slova
 	{
 		return(1); 
 	}
@@ -30,13 +30,15 @@ int porovnaj_slova(char *a, char *b)
 
 unsigned int pocet_tokenov(char *str)
 {
-	int i,j,start,dlzka;
-	unsigned int pocet, v_slove;
+	int i,j,start,dlzka, existuje;
+	unsigned int pocet,k;
 	char *nove_slovo;
+	char **slova;
 	
 	i=0;
 	pocet=0;
-	v_slove=0; // v_slove=0 == nie sme v slove ale v bielom znaky, v_slove=1 == sme v nejakom slove
+	slova=0;
+	existuje=0;
 	
 	while(str[i]!=0)
 	{
@@ -62,6 +64,20 @@ unsigned int pocet_tokenov(char *str)
                 nove_slovo[j] = str[start + j];
             }
             nove_slovo[dlzka] = '\0';
+            
+            for(k=0;k<pocet;k++)
+            {
+            	if (porovnaj_slova(slova[k],nove_slovo[k])==1)
+            	{
+            		existuje=1;
+            		break;
+				}
+			}
+			if (existuje=0)
+			{
+				
+			}
+			}
 		}
 	}
 return(dlzka);
