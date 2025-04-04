@@ -39,7 +39,6 @@ unsigned int pocet_tokenov(char *str)
 	i=0;
 	pocet=0;
 	slova=NULL;
-	existuje=0;
 	
 	while(str[i]!=0)
 	{
@@ -51,8 +50,9 @@ unsigned int pocet_tokenov(char *str)
 		if(str[i]!=0)
 		{
 			start=i;
+			existuje=0; // pred kazdym slovom musime prepisat na 0
 			
-			while(str[i]!=0 && str[i]!= ' '|| str[i]!= '\n'|| str[i]!= '\t')
+			while(str[i] != 0 && str[i] != ' '&& str[i]!= '\n' && str[i]!= '\t')
 			{
 				i++;
 			}
@@ -112,7 +112,7 @@ int main(void)
 	char text[]="prvy test test ahoj svet sve";
 	unsigned int vysledok = pocet_tokenov(text);
 	
-	printf("pocet tokenov: %d\n ",vysledok);
+	printf("pocet roznych slov: %d\n ",vysledok);
 	return(0);
 }
 
