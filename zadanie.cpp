@@ -82,16 +82,20 @@ unsigned int pocet_tokenov(char *str)
 					zoznam_slov[m]=slova[m];
 				}
 				zoznam_slov[pocet]=nove_slovo;
-			}
+				
+				free(slova);
+				slova= zoznam_slov;
+				pocet++;
 			}
 		}
-
 	}
+return(pocet);
+}
 
 
 int main(void)
 {
-	char text[]="prvy test";
+	char text[]="prvy test test ahoj svet sve";
 	unsigned int vysledok = pocet_tokenov(text);
 	
 	printf("pocet tokenov: %d\n ",vysledok);
