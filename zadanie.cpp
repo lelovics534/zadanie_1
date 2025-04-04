@@ -3,7 +3,7 @@
 
 unsigned int pocet_tokenov(char *str)
 {
-	int i;
+	int i,start,dlzka;
 	unsigned int pocet, v_slove;
 	
 	i=0;
@@ -12,19 +12,22 @@ unsigned int pocet_tokenov(char *str)
 	
 	while(str[i]!=0)
 	{
-		if(str[i]==' '|| str[i]=='\n'|| str[i]=='\t')
+		while(str[i]==' '|| str[i]=='\n'|| str[i]=='\t')
 		{
-			v_slove=0;
+			i++;
 		}
-		else
+		
+		if(str[i]!=0)
 		{
-			if(v_slove==0)
+			start=i;
+			
+			while(str[i]!=0 && str[i]!= ' '|| str[i]!= '\n'|| str[i]!= '\t')
 			{
-			pocet++;
-			v_slove=1;
+				i++;
 			}
+			
+			dlzka= i -start;
 		}
-	i++;
 	}
 return(pocet);
 }
@@ -34,7 +37,7 @@ int main(void)
 	char text[]="prvy test";
 	unsigned int vysledok = pocet_tokenov(text);
 	
-	printf("pocet tokenov: %d\n ",vysledok);
+	printf("pocet tokenov: %u\n ",vysledok);
 	return(0);
 }
 
