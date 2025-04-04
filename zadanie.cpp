@@ -1,10 +1,12 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 
 unsigned int pocet_tokenov(char *str)
 {
-	int i,start,dlzka;
+	int i,j,start,dlzka;
 	unsigned int pocet, v_slove;
+	char *nove_slovo;
 	
 	i=0;
 	pocet=0;
@@ -27,9 +29,16 @@ unsigned int pocet_tokenov(char *str)
 			}
 			
 			dlzka= i -start;
+			
+			nove_slovo = (char *)malloc((dlzka + 1) * sizeof(char));
+            for (j = 0; j < dlzka; j++)
+            {
+                nove_slovo[j] = str[start + j];
+            }
+            nove_slovo[dlzka] = '\0';
 		}
 	}
-return(pocet);
+return(dlzka);
 }
 
 int main(void)
@@ -37,7 +46,7 @@ int main(void)
 	char text[]="prvy test";
 	unsigned int vysledok = pocet_tokenov(text);
 	
-	printf("pocet tokenov: %u\n ",vysledok);
+	printf("pocet tokenov: %d\n ",vysledok);
 	return(0);
 }
 
