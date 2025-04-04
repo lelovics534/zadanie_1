@@ -4,7 +4,7 @@
 
 int porovnaj_slova(char *a, char *b)
 {
-	int i, rovnake, rozne;
+	int i;
 	
 	i=0;
 	
@@ -30,15 +30,15 @@ int porovnaj_slova(char *a, char *b)
 
 unsigned int pocet_tokenov(char *str)
 {
-	int i,j,start,dlzka, existuje,m;
-	unsigned int pocet,k;
+	int i,j,start,dlzka, existuje;
+	unsigned int pocet,k,m;
 	char *nove_slovo;
 	char **slova;
 	char **zoznam_slov;
 	
 	i=0;
 	pocet=0;
-	slova=0;
+	slova=NULL;
 	existuje=0;
 	
 	while(str[i]!=0)
@@ -68,13 +68,14 @@ unsigned int pocet_tokenov(char *str)
             
             for(k=0;k<pocet;k++)
             {
-            	if (porovnaj_slova(slova[k],nove_slovo)==1)
+            	if (porovnaj_slova(slova[k],nove_slovo))
             	{
             		existuje=1;
             		break;
 				}
 			}
-			if (existuje=0)
+			
+			if (existuje==0)
 			{
 				zoznam_slov = (char **)malloc((pocet + 1) * sizeof(char *));
 				for(m=0; m<pocet;m++)
@@ -87,6 +88,12 @@ unsigned int pocet_tokenov(char *str)
 				slova= zoznam_slov;
 				pocet++;
 			}
+			else 
+				{
+					free(nove_slovo);
+				}
+		
+			
 		}
 	}
 	
