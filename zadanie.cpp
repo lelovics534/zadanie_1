@@ -1,7 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int porovnaj_slova(char *a, char *b)
 {
@@ -12,22 +11,15 @@ int porovnaj_slova(char *a, char *b)
 	while(a[i] != 0 && b[i] != 0)
 	{
 		if(a[i] != b[i])
-		{
 			return 0; // rozne slova
-		}
-	i++;
+	    i++;
 	}
 	
 	if (a[i] == 0 && b[i] == 0) // su rovnako dlhe slova
-	{
 		return 1; 
-	}
 	else
-		{
-			return 0; //su rozne
-		}
+        return 0; //su rozne
 }
-
 
 unsigned int pocet_tokenov(char *str)
 {
@@ -37,7 +29,6 @@ unsigned int pocet_tokenov(char *str)
 	char **slova;
 	char **zoznam_slov;
 	
-	
 	i = 0;
 	pocet = 0;
 	slova = NULL;
@@ -45,45 +36,35 @@ unsigned int pocet_tokenov(char *str)
 	while(str[i] != 0)
 	{
 		while(str[i] == ' '|| str[i] == '\n'|| str[i] == '\t')
-		{
 			i++;
-		}
 		
 		if(str[i] != 0)
 		{
 			start = i;
 			existuje=0; // pred kazdym slovom musime prepisat na 0
 			
-			while(str[i] != 0 && str[i] != ' '&& str[i] != '\n' && str[i]!= '\t')
-			{
+			while(str[i] != 0 && str[i] != ' ' && str[i] != '\n' && str[i]!= '\t')
 				i++;
-			}
 			
 			dlzka= i -start;
 			
 			nove_slovo = (char *)malloc((dlzka + 1) * sizeof(char));
             for (j = 0; j < dlzka; j++)
-            {
                 nove_slovo[j] = str[start + j];
-            }
             nove_slovo[dlzka] = '\0';
             
             for(k = 0; k < pocet; k++)
-            {
             	if (porovnaj_slova(slova[k], nove_slovo))
             	{
             		existuje = 1;
             		break;
 				}
-			}
 			
 			if (existuje == 0)
 			{
 				zoznam_slov = (char **)malloc((pocet + 1) * sizeof(char *));
 				for(m = 0; m < pocet; m++)
-				{
 					zoznam_slov[m] = slova[m];
-				}
 				zoznam_slov[pocet] = nove_slovo;
 				
 				free(slova);
@@ -91,19 +72,15 @@ unsigned int pocet_tokenov(char *str)
 				pocet++;
 			}
 			else 
-			{
 				free(nove_slovo);
-			}		
 		}
 	}
 	
 	for (i = 0; i < pocet; i++)
-	{
 		free(slova[i]);
-	}
 	free(slova);
 	
-return(pocet);
+    return(pocet);
 }
 
 
